@@ -39,16 +39,16 @@ def transcribe_audio(file_path, model_size, output_dir, root):
             messagebox.showinfo("Aborted", "Transcription canceled.")
             return
 
-    progress_win = show_progress(root, "Transcribing... please wait.")
+    progress_win = show_progress(root, "Transcribing, please wait.")
     done_queue = queue.Queue()
 
     def run():
         try:
-            print("[DEBUG] Starting transcription thread...")
+            print("[DEBUG] Starting transcription thread")
             print(f"[DEBUG] Model: {model_size}")
             print(f"[DEBUG] Audio file: {file_path}")
 
-            print("[DEBUG] Loading Whisper model...")
+            print("[DEBUG] Loading Whisper model")
             try:
                 model = whisper.load_model(model_size)
                 print("[DEBUG] Model loaded to CPU.")
@@ -61,12 +61,12 @@ def transcribe_audio(file_path, model_size, output_dir, root):
 
             print("[DEBUG] Model loaded successfully.")
 
-            print("[DEBUG] Beginning transcription...")
+            print("[DEBUG] Beginning transcription")
             result = model.transcribe(file_path, verbose=False, language='en')
             print("[DEBUG] Transcription complete.")
 
             with open(output_path, "w", encoding="utf-8") as f:
-                print("[DEBUG] Writing output file...")
+                print("[DEBUG] Writing output file")
                 for segment in result["segments"]:
                     start = format_timestamp(segment["start"])
                     end = format_timestamp(segment["end"])
@@ -120,7 +120,7 @@ def gui_mode():
     root = tk.Tk()
     root.withdraw()
 
-    print("[DEBUG] Launching file picker...")
+    print("[DEBUG] Launching file picker")
     audio_file = filedialog.askopenfilename(
         title="Select Audio File",
         filetypes=[("Audio Files", "*.mp3 *.wav *.m4a *.flac *.ogg *.webm")]
@@ -145,6 +145,6 @@ def gui_mode():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        print("This version uses a GUI. Just run: python whisper_rocm_gui.py")
+        print("This version uses a GUI. Just run: python whisper-rocm-gui.py")
         sys.exit(1)
     gui_mode()
