@@ -75,6 +75,10 @@ if [[ "$create_venv" =~ ^[Yy]$ ]]; then
     echo "the command we are about to run is: source venv/bin/activate"
     source venv/bin/activate
 
+    echo "Installing Whisper from the official source"
+    echo "the command we are about to run is: pip install git+https://github.com/openai/whisper.git"
+    pip install git+https://github.com/openai/whisper.git
+
     echo "Installing Python dependencies..."
     echo "the command we are about to run are:"
     echo "pip install --upgrade pip"
