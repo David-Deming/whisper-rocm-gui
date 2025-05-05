@@ -34,10 +34,15 @@ yes, that includes you, who knows I could be a total dick
 
 ## Installation
 
-1. Clone this repo:
+1. Clone this repo and get setup:
     ```bash
     git clone https://github.com/david-deming/whisper-rocm-gui.git
+    ```
+   ```bash
     cd whisper-rocm-gui
+   ```
+    ```bash
+    chmod +x setup.sh
     ```
 
 2. Run the setup script:
