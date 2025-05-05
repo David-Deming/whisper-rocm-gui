@@ -1,15 +1,14 @@
 # Whisper ROCm GUI
 
-**Whisper ROCm GUI** is a simple Python script that transcribes audio files using OpenAI's Whisper, installed from their official source
-I built it because nvidia is a pain and I wanted to use my **AMD GPU** since my CPU was taking forever
+**Whisper ROCm GUI** is a simple Python script that transcribes audio files using OpenAI's Whisper, installed from their official source. 
+I built it because nvidia is a pain and I wanted to use my **AMD GPU** since my CPU was taking forever. 
 
 It uses a semi user friendly GUI built with `tkinter`.  
-Its a bit rough around the edges from a UI standpoint but it gets the job done... mostly
+Its a bit rough around the edges from a UI standpoint but it gets the job done... mostly. 
 
-So far its only been tested inside a debian based **distrobox** on a fedora silverblue gaming PC mostly because my laptop finally died and I was too lazy to dual boot a normal fedora install
-now also in a fedora and ubuntu based one too
+So far its only been tested inside various distroboxes on a fedora silverblue gaming PC. Yes I am aware, weird choice of machine to develop anything on, my laptop finally died and I was too lazy to dual boot a normal fedora install. 
 
-Use at your own risk, this has not been thouroughly tested. You should never run scripts from the internet without reading them, so read my scripts first
+Use at your own risk, this has not been thouroughly tested. You should never run scripts from the internet without reading them, so read my scripts first. 
 yes, that includes you, who knows I could be a total dick
 
 ---
