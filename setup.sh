@@ -75,25 +75,24 @@ if [[ "$create_venv" =~ ^[Yy]$ ]]; then
     echo "the command we are about to run is: source venv/bin/activate"
     source venv/bin/activate
 
-    echo "Installing Whisper from the official source"
-    echo "the command we are about to run is: pip install git+https://github.com/openai/whisper.git"
-    pip install git+https://github.com/openai/whisper.git
-
     echo "Installing Python dependencies..."
     echo "the command we are about to run are:"
     echo "pip install --upgrade pip"
-    echo "pip install -r requirements.txt"
+    echo "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
     pip install --upgrade pip
-    pip install -r requirements.txt
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7
 
-    echo
-    echo "Setup complete"
+    echo "Installing Whisper from the official source"
+    echo "the command we are about to run is: pip install git+https://github.com/openai/whisper.git"
+    pip install git+https://github.com/openai/whisper.git
+    
+    echo "Setup complete, hopefully"
     echo "Now you just run python3 whisper-rocm-gui.py and thats that"
     echo "please contribute to the project to make it better for the next person"
 else
     echo "Skipping virtual environment setup. You can do it manually later:"
     echo "python3 -m venv venv"
     echo "source venv/bin/activate"
-    echo "pip install -r requirements.txt"
+    echo "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
     echo "please contribute to the project to make it better for the next person"
 fi
