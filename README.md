@@ -49,7 +49,7 @@ yes, that includes you, who knows I could be a total dick
     - System packages:
         - **Debian (APT)**: `python3 python3-pip python3-venv python3-tk ffmpeg git`
         - **Fedora (DNF)**: `python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git`
-    - Python packages make sure to use a venv:
+    - Python packages. Please make sure to use a venv:
         ```bash
         pip install -r requirements.txt
         ```
@@ -59,5 +59,5 @@ yes, that includes you, who knows I could be a total dick
 ## Usage
 
 ```bash
-source whisper-venv/bin/activate
+source venv/bin/activate
 python whisper-rocm-gui.py
