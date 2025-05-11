@@ -5,13 +5,27 @@
 </head>
 <body>
   <h1>Whisper Audio Transcriber</h1>
-  <p>Select an audio file:</p>
-  <input type="file" id="audioInput" accept="audio/*"><br><br>
-  
+
+  <p>Choose Mode:</p>
+  <select id="modeSelect">
+    <option value="file">Transcribe Existing File</option>
+    <option value="record">Record with Microphone</option>
+  </select><br><br>
+
+  <div id="fileInputSection">
+    <input type="file" id="audioInput" accept="audio/*"><br><br>
+  </div>
+
+  <div id="recordSection" style="display:none;">
+    <button id="startRecording">Start Recording</button>
+    <button id="stopRecording" disabled>Stop Recording</button>
+    <p id="recordingStatus"></p><br>
+  </div>
+
   <p>Output Directory:</p>
   <input type="text" id="outputDir" readonly>
-  <button id="browseBtn">Browse</button><br><br>  
-  
+  <button id="browseBtn">Browse</button><br><br>
+
   <p>Select Model:</p>
   <select id="modelSelect">
     <option value="tiny">tiny</option>
@@ -24,6 +38,13 @@
   </select><br><br>
 
   <button id="transcribeBtn">Transcribe</button>
+
+  <div id="renameModal" style="display:none; position:fixed; top:30%; left:30%; background:white; border:1px solid #ccc; padding:20px; z-index:1000;">
+    <p>Output file already exists or you are recording. Enter a name (no extension):</p>
+    <input type="text" id="newFileName" style="width: 100%;"><br><br>
+    <button id="confirmRename">OK</button>
+    <button id="cancelRename">Cancel</button>
+  </div>
 
   <script src="renderer.js"></script>
 </body>
