@@ -17,8 +17,8 @@ if [ -f /etc/os-release ]; then
 else
     echo "Cant figure out the OS, but dont worry buddy"
     echo "You can install dependencies manually"
-    echo "Debian based (apt): sudo apt install python3 python3-pip python3-venv python3-tk ffmpeg git"
-    echo "RHEL based (dnf): sudo dnf install python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git"
+    echo "Debian based (apt): sudo apt install python3.11 python3-pip python3.11-venv python3-tk ffmpeg git"
+    echo "RHEL based (dnf): sudo dnf install python3.11 python3-pip python3.11-virtualenv python3-tkinter ffmpeg git"
     exit 1
 fi
 
@@ -27,13 +27,13 @@ install_debian_packages() {
     echo "Installing packages for Debian/Ubuntu, enter password when prompted"
     echo "Dont forget to read the script first so you know what youre installing"
     sudo apt update
-    sudo apt install -y python3 python3-pip python3-venv python3-tk ffmpeg git
+    sudo apt install -y python3.11 python3-pip python3.11-venv python3-tk ffmpeg git
 }
 
 install_fedora_packages() {
     echo "Installing packages for Fedora, enter password when prompted"
     echo "Dont forget to read the script first so you know what youre installing"
-    sudo dnf install -y python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git
+    sudo dnf install -y python3.11 python3-pip python3-virtualenv python3-tkinter ffmpeg git
 }
 
 if [[ "$DISTRO" == "ubuntu" || "$DISTRO" == "debian" ]]; then
@@ -43,24 +43,31 @@ if [[ "$DISTRO" == "ubuntu" || "$DISTRO" == "debian" ]]; then
         install_debian_packages
     else
         echo "Skipping package installation. You should install these on your own then:"
-        echo "python3 python3-pip python3-venv python3-tk ffmpeg git"
+        echo "python3.11 python3-pip python3-venv python3-tk ffmpeg git"
     fi
 
 elif [[ "$DISTRO" == "fedora" ]]; then
     echo "Fedora based:"
-    read -p "Do you want to install required system packages now? (y/n): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
-        install_fedora_packages
-    else
-        echo "Skipping package installation. You should install these on your own then:"
-        echo "python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git"
-    fi
+    echo "A recent Fedora update has started causing an selinux issue that is making this not work."
+    echo "you should use a debian based system."
+    echo "on Fedora, this will work inside a debain distrobox."
+    echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    echo "it would be super cool if you want to help fix the fedora issue btw"
+    sleep 2
+    exit 1
+    #read -p "Do you want to install required system packages now? (y/n): " confirm
+    #if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    #    install_fedora_packages
+    #else
+    #    echo "Skipping package installation. You should install these on your own then:"
+    #    echo "python3.11 python3-pip python3-virtualenv python3-tkinter ffmpeg git"
+    #fi
 
 else
     echo "Unsupported or undetected distribution, or I screwed up the script."
     echo "Please install dependencies manually:"
-    echo "Debian (apt):    python3 python3-pip python3-venv python3-tk ffmpeg git"
-    echo "Fedora (dnf):    python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git"
+    echo "Debian (apt):    python3.11 python3-pip python3-venv python3-tk ffmpeg git"
+    echo "Fedora (dnf):    python3.11 python3-pip python3-virtualenv python3-tkinter ffmpeg git"
     exit 1
 fi
 
@@ -69,30 +76,13 @@ read -p "Create and activate a Python virtual environment now? This will include
 
 if [[ "$create_venv" =~ ^[Yy]$ ]]; then
     echo "Creating virtual environment (venv) in ./venv"
-    python3 -m venv venv
-
-    echo "entering that venv we just made"
-    echo "the command we are about to run is: source venv/bin/activate"
+    python3.11 -m venv venv
     source venv/bin/activate
-
-    echo "Installing Python dependencies..."
-    echo "the command we are about to run are:"
-    echo "pip install --upgrade pip"
-    echo "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
-    pip install --upgrade pip
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7
-
-    echo "Installing Whisper from the official source"
-    echo "the command we are about to run is: pip install git+https://github.com/openai/whisper.git"
-    pip install git+https://github.com/openai/whisper.git
-    
-    echo "Setup complete, hopefully"
-    echo "Now you just run python3 whisper-rocm-gui.py and thats that"
-    echo "please contribute to the project to make it better for the next person"
+    pip install -r requirements.txt -c constraints.txt --extra-index-url https://download.pytorch.org/whl/rocm5.7
 else
     echo "Skipping virtual environment setup. You can do it manually later:"
-    echo "python3 -m venv venv"
+    echo "python3.11 -m venv venv"
     echo "source venv/bin/activate"
-    echo "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
+    echo "pip install -r requirements.txt -c constraints.txt --extra-index-url https://download.pytorch.org/whl/rocm5.7"
     echo "please contribute to the project to make it better for the next person"
 fi
