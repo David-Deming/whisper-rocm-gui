@@ -16,9 +16,9 @@ def format_timestamp(seconds):
     return f"{hrs:02}:{mins:02}:{secs:02}"
 
 def show_progress(root, message):
-    print("[DEBUG] Showing progress window...")
+    print("[DEBUG] Showing progress window")
     win = tk.Toplevel(root)
-    win.title("Please wait...")
+    win.title("Please wait")
     tk.Label(win, text=message).pack(pady=10)
     bar = ttk.Progressbar(win, mode='indeterminate')
     bar.pack(padx=20, pady=10, fill="x")
@@ -53,7 +53,7 @@ def transcribe_audio(file_path, model_size, output_dir, root):
                 model = whisper.load_model(model_size)
                 print("[DEBUG] Model loaded to CPU.")
                 model = model.to("cuda")
-                print("[DEBUG] Model moved to CUDA.")
+                print("[DEBUG] Model moved to GPU")
             except Exception as e:
                 print("[ERROR] Model loading failed:", e)
                 done_queue.put(("error", f"Model load failed: {e}"))
@@ -145,6 +145,6 @@ def gui_mode():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        print("This version uses a GUI. Just run: python whisper-rocm-gui.py")
+        print("This version uses a GUI. Just run python whisper-rocm-gui.py")
         sys.exit(1)
     gui_mode()
