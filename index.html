@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Whisper Electron</title>
+</head>
+<body>
+  <h1>Whisper Audio Transcriber</h1>
+  <p>Select an audio file:</p>
+  <input type="file" id="audioInput" accept="audio/*"><br><br>
+  
+  <p>Output Directory:</p>
+  <input type="text" id="outputDir" readonly>
+  <button id="browseBtn">Browse</button><br><br>  
+  
+  <p>Select Model:</p>
+  <select id="modelSelect">
+    <option value="tiny">tiny</option>
+    <option value="base">base</option>
+    <option value="small">small</option>
+    <option value="medium">medium</option>
+    <option value="large">large</option>
+    <option value="large-v3">large-v3</option>
+    <option value="large-v3-turbo">large-v3-turbo</option>
+  </select><br><br>
+
+  <button id="transcribeBtn">Transcribe</button>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

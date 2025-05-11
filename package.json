@@ -1,0 +1,13 @@
+{
+  "name": "whisper-electron-app",
+  "version": "1.0.0",
+  "description": "Electron-based GUI for Whisper transcription",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}
