@@ -39,7 +39,7 @@ def transcribe_audio(file_path, model_size, output_dir, root):
             messagebox.showinfo("Aborted", "Transcription canceled.")
             return
 
-    progress_win = show_progress(root, "Transcribing, please wait.")
+    progress_win = show_progress(root, "Transcribing please wait.")
     done_queue = queue.Queue()
 
     def run():
@@ -51,9 +51,9 @@ def transcribe_audio(file_path, model_size, output_dir, root):
             print("[DEBUG] Loading Whisper model")
             try:
                 model = whisper.load_model(model_size)
-                print("[DEBUG] Model loaded to CPU.")
+                print("[DEBUG] Model loaded to CPU")
                 model = model.to("cuda")
-                print("[DEBUG] Model moved to GPU")
+                print("[DEBUG] Model moved to ROCm")
             except Exception as e:
                 print("[ERROR] Model loading failed:", e)
                 done_queue.put(("error", f"Model load failed: {e}"))
@@ -63,16 +63,16 @@ def transcribe_audio(file_path, model_size, output_dir, root):
 
             print("[DEBUG] Beginning transcription")
             result = model.transcribe(file_path, verbose=False, language='en')
-            print("[DEBUG] Transcription complete.")
+            print("[DEBUG] Transcription complete")
 
             with open(output_path, "w", encoding="utf-8") as f:
-                print("[DEBUG] Writing output file")
+                print("[DEBUG] Writing output file...")
                 for segment in result["segments"]:
                     start = format_timestamp(segment["start"])
                     end = format_timestamp(segment["end"])
                     text = segment["text"].strip()
                     f.write(f"[{start} --> {end}] {text}\n")
-            print("[DEBUG] File saved successfully.")
+            print("[DEBUG] File saved successfully")
 
             done_queue.put(("success", output_path))
         except Exception as e:
@@ -120,7 +120,7 @@ def gui_mode():
     root = tk.Tk()
     root.withdraw()
 
-    print("[DEBUG] Launching file picker")
+    print("[DEBUG] Launching file picker...")
     audio_file = filedialog.askopenfilename(
         title="Select Audio File",
         filetypes=[("Audio Files", "*.mp3 *.wav *.m4a *.flac *.ogg *.webm")]
@@ -145,6 +145,6 @@ def gui_mode():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        print("This version uses a GUI. Just run python whisper-rocm-gui.py")
+        print("This version uses a GUI. Just run: python whisper_rocm_gui.py")
         sys.exit(1)
     gui_mode()
