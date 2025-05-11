@@ -26,7 +26,7 @@ yes, that includes you, who knows I could be a total dick
 
 ## Requirements
 
-- Python 3.9+
+- Python 3.11
 - ROCm-compatible AMD GPU. I am using a 7900xtx
 - PyTorch ROCm build
 - Whisper installed from OpenAI's official repo at https://github.com/openai/whisper
@@ -41,9 +41,9 @@ yes, that includes you, who knows I could be a total dick
     ```bash
     git clone https://github.com/david-cant-code/whisper-rocm-gui.git
     ```
-   ```bash
+    ```bash
     cd whisper-rocm-gui
-   ```
+    ```
     ```bash
     chmod +x setup.sh
     ```
@@ -55,8 +55,9 @@ yes, that includes you, who knows I could be a total dick
 
 3. Or read the script first and manually install things
     - System packages:
-        - **Debian (APT)**: `python3 python3-pip python3-venv python3-tk ffmpeg git`
-        - **Fedora (DNF)**: `python3 python3-pip python3-virtualenv python3-tkinter ffmpeg git`
+        - **Debian (APT)**: `python3.11 python3-pip python3.11-venv python3-tk ffmpeg git`
+        - **Fedora (DNF)**: `python3.11 python3-pip python3.11-virtualenv python3-tkinter ffmpeg git`
+        - **Fedora has an selinux issue now so debian only**
 
 ---
 
@@ -64,4 +65,4 @@ yes, that includes you, who knows I could be a total dick
 
 ```bash
 source venv/bin/activate
-python whisper-rocm-gui.py
+python.11 whisper-rocm-gui.py
