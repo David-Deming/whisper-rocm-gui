@@ -1,6 +1,6 @@
 # Whisper ROCm GUI
 
-**Whisper ROCm GUI** is a simple Python script that transcribes audio files using OpenAI's Whisper, installed from their official source. It allows you to use an AMD GPU instead of an nvidia GPU. This has been tested and works on my 7900xtx. Please let me know if you have any issues, and I welcom any help with polishing the GUI up, or replacing it all together
+**Whisper ROCm GUI** is a simple Python script that transcribes audio files using OpenAI's Whisper, installed from their official source. It allows you to use an AMD GPU instead of an nvidia GPU. This has been tested and works on my 7900xtx and also a 6950xt. Please let me know if you have any issues, anyone wanting to help is welcome to help improve this and add new features.
 
 I built it because nvidia is a pain and I wanted to use my **AMD GPU** since my CPU was taking forever. 
 
@@ -19,6 +19,8 @@ yes, that includes you, who knows I could be a total dick
 - [ ] Polish the GUI or maybe switch to something nicer than `tkinter`
 - [ ] Make the setup smoother for non-technical users
 - [ ] Test in more environments
+- [ ] add in ability to record sound to pass to whisper (push to talk?)
+- [ ] other fun stuff
 
 ---
 
@@ -37,7 +39,7 @@ yes, that includes you, who knows I could be a total dick
 
 1. Clone this repo and get setup:
     ```bash
-    git clone https://github.com/david-deming/whisper-rocm-gui.git
+    git clone https://github.com/david-cant-code/whisper-rocm-gui.git
     ```
    ```bash
     cd whisper-rocm-gui
